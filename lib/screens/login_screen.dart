@@ -14,6 +14,7 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Spacer(flex: 4),
             Image.asset('assets/images/scholar.png'),
             const Text(
               'Scholar Chat',
@@ -23,22 +24,52 @@ class LoginScreen extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            const Text(
-              'Login',
-              style: TextStyle(
-                fontSize: 24,
-                color: Colors.white,
-              ),
+            const Spacer(flex: 2),
+            Row(
+              children: const [
+                Text(
+                  'Login',
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
-            CustomTextField(
-              hintText: 'Enter your Email',
-              labelText: 'Email',
+            const Spacer(flex: 1),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: CustomTextField(
+                hintText: 'Enter your Email',
+                labelText: 'Email',
+              ),
             ),
             CustomTextField(
               hintText: 'Enter your Password',
               labelText: 'Password',
             ),
+            const Spacer(flex: 1),
             CustomButton(text: 'Login'),
+            const Spacer(flex: 1),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Don't have an account?",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  '  Register',
+                  style: TextStyle(
+                    color: Colors.blue[200],
+                    fontSize: 16,
+                  ),
+                )
+              ],
+            ),
+            const Spacer(flex: 5),
           ],
         ),
       ),
