@@ -1,12 +1,79 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+
+import '../widgets/custom_button.dart';
+import '../widgets/custom_text_field.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: const Color(0xff2b475e),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Spacer(flex: 4),
+            Image.asset('assets/images/scholar.png'),
+            const Text(
+              'Scholar Chat',
+              style: TextStyle(
+                fontSize: 32,
+                fontFamily: 'Pacifico',
+                color: Colors.white,
+              ),
+            ),
+            const Spacer(flex: 2),
+            Row(
+              children: const [
+                Text(
+                  'Register',
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+            const Spacer(flex: 1),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: CustomTextField(
+                hintText: 'Enter your Email',
+                labelText: 'Email',
+              ),
+            ),
+            CustomTextField(
+              hintText: 'Enter your Password',
+              labelText: 'Password',
+            ),
+            const Spacer(flex: 1),
+            CustomButton(text: 'Register'),
+            const Spacer(flex: 1),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Already have an account?",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  '  Login',
+                  style: TextStyle(
+                    color: Colors.blue[200],
+                    fontSize: 16,
+                  ),
+                )
+              ],
+            ),
+            const Spacer(flex: 5),
+          ],
+        ),
+      ),
+    );
   }
 }

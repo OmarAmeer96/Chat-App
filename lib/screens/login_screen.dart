@@ -1,3 +1,4 @@
+import 'package:chat_app/screens/register_screen.dart';
 import 'package:chat_app/widgets/custom_button.dart';
 import 'package:chat_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -60,11 +61,23 @@ class LoginScreen extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                Text(
-                  '  Register',
-                  style: TextStyle(
-                    color: Colors.blue[200],
-                    fontSize: 16,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const RegisterScreen();
+                        },
+                      ),
+                    );
+                  },
+                  child: Text(
+                    '  Register',
+                    style: TextStyle(
+                      color: Colors.blue[200],
+                      fontSize: 16,
+                    ),
                   ),
                 )
               ],
