@@ -1,14 +1,19 @@
+import 'dart:async';
+
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/screens/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_field.dart';
 
 class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+  RegisterScreen({super.key});
 
   static String id = 'RegisterScreen';
+  String? eamil;
+  String? password;
 
   @override
   Widget build(BuildContext context) {
@@ -58,18 +63,34 @@ class RegisterScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: CustomTextField(
+                onChanged: (data) {
+                  eamil = data;
+                },
                 hintText: 'Enter your Email',
                 labelText: 'Email',
               ),
             ),
             CustomTextField(
+              onChanged: (data) {
+                password = data;
+              },
               hintText: 'Enter your Password',
               labelText: 'Password',
             ),
             const SizedBox(
               height: 30,
             ),
-            CustomButton(text: 'Register'),
+            CustomButton(
+                onTap: () async {
+                  var auth = FirebaseAuth.instance;
+                  UserCredential user =
+                      await auth.createUserWithEmailAndPassword(
+                    email: eamil!,
+                    password: password!,
+                  );
+                  print(user.user!.displayName);
+                },
+                text: 'Register'),
             const SizedBox(
               height: 30,
             ),
