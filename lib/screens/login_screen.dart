@@ -7,26 +7,39 @@ import 'package:flutter/material.dart';
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
+  static String id = 'LoginScreen';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
           children: [
-            const Spacer(flex: 4),
-            Image.asset('assets/images/scholar.png'),
-            const Text(
-              'Scholar Chat',
-              style: TextStyle(
-                fontSize: 32,
-                fontFamily: 'Pacifico',
-                color: Colors.white,
-              ),
+            const SizedBox(
+              height: 100,
             ),
-            const Spacer(flex: 2),
+            Image.asset(
+              'assets/images/scholar.png',
+              height: 100,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'Omario Chat',
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontFamily: 'Pacifico',
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 50,
+            ),
             Row(
               children: const [
                 Text(
@@ -38,7 +51,9 @@ class LoginScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const Spacer(flex: 1),
+            const SizedBox(
+              height: 50,
+            ),
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: CustomTextField(
@@ -50,9 +65,13 @@ class LoginScreen extends StatelessWidget {
               hintText: 'Enter your Password',
               labelText: 'Password',
             ),
-            const Spacer(flex: 1),
+            const SizedBox(
+              height: 30,
+            ),
             CustomButton(text: 'Login'),
-            const Spacer(flex: 1),
+            const SizedBox(
+              height: 30,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -64,7 +83,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, 'RegisterScreen');
+                    Navigator.pushNamed(context, RegisterScreen.id);
                   },
                   child: Text(
                     '  Register',
@@ -76,7 +95,6 @@ class LoginScreen extends StatelessWidget {
                 )
               ],
             ),
-            const Spacer(flex: 5),
           ],
         ),
       ),
