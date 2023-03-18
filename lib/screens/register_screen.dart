@@ -1,3 +1,5 @@
+import 'package:chat_app/constants.dart';
+import 'package:chat_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/custom_button.dart';
@@ -9,7 +11,7 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff2b475e),
+      backgroundColor: kPrimaryColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Column(
@@ -61,13 +63,18 @@ class RegisterScreen extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                Text(
-                  '  Login',
-                  style: TextStyle(
-                    color: Colors.blue[200],
-                    fontSize: 16,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    '  Login',
+                    style: TextStyle(
+                      color: Colors.blue[200],
+                      fontSize: 16,
+                    ),
                   ),
-                )
+                ),
               ],
             ),
             const Spacer(flex: 5),
