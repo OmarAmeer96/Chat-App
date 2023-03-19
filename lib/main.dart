@@ -1,3 +1,4 @@
+import 'package:chat_app/screens/chat_screen.dart';
 import 'package:chat_app/screens/login_screen.dart';
 import 'package:chat_app/screens/register_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,6 +23,7 @@ class ScholarChat extends StatelessWidget {
       routes: {
         LoginScreen.id: (context) => const LoginScreen(),
         RegisterScreen.id: (context) => const RegisterScreen(),
+        ChatScreen.id: (context) => const ChatScreen(),
       },
       debugShowCheckedModeBanner: false,
       initialRoute: 'LoginScreen',

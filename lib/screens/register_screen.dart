@@ -9,6 +9,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../helper/show_snack_bar.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_form_field.dart';
+import 'chat_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -42,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 100,
                 ),
                 Image.asset(
-                  'assets/images/scholar.png',
+                  kLogo,
                   height: 100,
                 ),
                 Row(
@@ -102,8 +103,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         setState(() {});
                         try {
                           await registerUser();
-                          showSnackBar(
-                              context, 'Account created successfully!');
+                          // ignore: use_build_context_synchronously
+                          Navigator.pushNamed(context, ChatScreen.id);
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'weak-password') {
                             showSnackBar(
