@@ -6,8 +6,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
+import '../helper/show_snack_bar.dart';
 import '../widgets/custom_button.dart';
-import '../widgets/custom_text_field.dart';
+import '../widgets/custom_text_form_field.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -19,9 +20,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  String? eamil;
-
-  String? password;
+  String? email, password;
 
   bool isLoading = false;
 
@@ -78,15 +77,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
-                  child: CustomTextField(
+                  child: CustomTextFormField(
                     onChanged: (data) {
-                      eamil = data;
+                      email = data;
                     },
                     hintText: 'Enter your Email',
                     labelText: 'Email',
                   ),
                 ),
-                CustomTextField(
+                CustomTextFormField(
                   onChanged: (data) {
                     password = data;
                   },
@@ -98,12 +97,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 CustomButton(
                     onTap: () async {
-                      var auth = FirebaseAuth.instance;
                       if (formKey.currentState!.validate()) {
                         isLoading = true;
                         setState(() {});
                         try {
-                          await registerUser(auth);
+                          await registerUser();
                           showSnackBar(
                               context, 'Account created successfully!');
                         } on FirebaseAuthException catch (e) {
@@ -156,17 +154,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  void showSnackBar(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
-  }
-
-  Future<void> registerUser(FirebaseAuth auth) async {
-    UserCredential user = await auth.createUserWithEmailAndPassword(
-      email: eamil!,
+  Future<void> registerUser() async {
+    UserCredential user =
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email!,
       password: password!,
     );
   }

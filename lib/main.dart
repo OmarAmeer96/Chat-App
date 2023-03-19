@@ -21,7 +21,7 @@ class ScholarChat extends StatelessWidget {
     return MaterialApp(
       routes: {
         LoginScreen.id: (context) => const LoginScreen(),
-        RegisterScreen.id: (context) => RegisterScreen(),
+        RegisterScreen.id: (context) => const RegisterScreen(),
       },
       debugShowCheckedModeBanner: false,
       initialRoute: 'LoginScreen',
