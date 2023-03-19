@@ -1,6 +1,8 @@
 import 'package:chat_app/constants.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/chat_bubble.dart';
+
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
 
@@ -24,6 +26,38 @@ class ChatScreen extends StatelessWidget {
           ],
         ),
         centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (context, index) {
+                return const ChatBubble();
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Send Message',
+                suffixIcon: const Icon(
+                  Icons.send_rounded,
+                  color: kPrimaryColor,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: const BorderSide(
+                    color: kPrimaryColor,
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
