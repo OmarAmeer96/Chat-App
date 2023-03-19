@@ -83,12 +83,18 @@ class RegisterScreen extends StatelessWidget {
             CustomButton(
                 onTap: () async {
                   var auth = FirebaseAuth.instance;
-                  UserCredential user =
-                      await auth.createUserWithEmailAndPassword(
-                    email: eamil!,
-                    password: password!,
-                  );
-                  print(user.user!.displayName);
+                  try {
+                    await registerUser(auth);
+                  } on FirebaseAuthException catch (e) {
+                    if (e.code == 'weak-password') {
+                      showSnackBar(
+                          context, 'The password provided is too weak.');
+                    } else if (e.code == 'email-already-in-use') {
+                      showSnackBar(context,
+                          'The account already exists for that email.');
+                    }
+                  }
+                  showSnackBar(context, 'Account created successfully!');
                 },
                 text: 'Register'),
             const SizedBox(
@@ -120,6 +126,21 @@ class RegisterScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+  }
+
+  Future<void> registerUser(FirebaseAuth auth) async {
+    UserCredential user = await auth.createUserWithEmailAndPassword(
+      email: eamil!,
+      password: password!,
     );
   }
 }
