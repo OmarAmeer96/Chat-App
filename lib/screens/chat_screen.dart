@@ -47,6 +47,7 @@ class ChatScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: ListView.builder(
+                    reverse: false,
                     itemCount: messagesList.length,
                     itemBuilder: (context, index) {
                       return ChatBubble(
