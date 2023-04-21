@@ -53,7 +53,7 @@ class ChatBubbleOfFriend extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         padding: const EdgeInsets.all(25),
         decoration: const BoxDecoration(
-          color: kPrimaryColor,
+          color: Colors.deepOrange,
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(32),
             topLeft: Radius.circular(32),
@@ -63,7 +63,7 @@ class ChatBubbleOfFriend extends StatelessWidget {
         child: Text(
           message.message,
           style: const TextStyle(
-            color: Colors.orange,
+            color: Colors.white,
           ),
         ),
       ),
