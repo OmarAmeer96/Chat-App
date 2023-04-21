@@ -104,7 +104,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         try {
                           await registerUser();
                           // ignore: use_build_context_synchronously
-                          Navigator.pushNamed(context, ChatScreen.id);
+                          Navigator.pushNamed(context, ChatScreen.id, arguments: email);
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'weak-password') {
                             showSnackBar(
